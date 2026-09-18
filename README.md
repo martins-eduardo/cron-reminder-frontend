@@ -1,75 +1,54 @@
-# React + TypeScript + Vite
+# Cron Lembretes — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Interface web para criar, listar e excluir lembretes agendados, construída com React, TypeScript e Vite. O frontend consome uma API REST (executando por padrão em `http://localhost:3333`) que dispara os lembretes via cron job.
 
-Currently, two official plugins are available:
+## Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Criar lembretes com título e data/hora agendada
+- Listar lembretes com status (pendente / enviado)
+- Excluir lembretes
+- Atualização automática da lista a cada segundo
 
-## React Compiler
+## Pré-requisitos
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Node.js 18+
+- A API de lembretes rodando em `http://localhost:3333` (veja `src/api.ts`)
 
-## Expanding the ESLint configuration
+## Instalação
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+## Uso
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+npm run dev
+```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+A aplicação ficará disponível em `http://localhost:5173` (padrão do Vite).
+
+## Scripts disponíveis
+
+| Comando           | Descrição                                  |
+| ------------------ | ------------------------------------------- |
+| `npm run dev`      | Inicia o servidor de desenvolvimento         |
+| `npm run build`    | Compila o projeto (TypeScript + Vite build)  |
+| `npm run preview`  | Serve o build de produção localmente         |
+| `npm run lint`     | Executa o ESLint                             |
+
+## Estrutura do projeto
 
 ```
+src/
+├── api.ts      # Funções de comunicação com a API de lembretes
+├── App.tsx     # Componente principal (formulário e listagem)
+└── main.tsx    # Ponto de entrada da aplicação
+```
+
+## Tecnologias
+
+- [React 19](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/)
+- [ESLint](https://eslint.org/)
